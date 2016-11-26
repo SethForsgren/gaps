@@ -22,7 +22,7 @@ gem 'chalk-config'
 gem 'rake'
 
 #########
-gem 'google-api-client'
+gem 'google-api-client', '~> 0.8.6'
 gem 'configatron'
 gem 'pry'
 gem 'rest-client'
