@@ -10,6 +10,7 @@ updated within 10 minutes and an automated email sent to <%= configatron.notify.
 
 <p> You are a member of <b><%= @user.group_member_count %></b> <%= @user.group_member_count == 1 ? 'group' : 'groups' %>. </p>
 
+<a href="<%= configatron.info.add_new_group_url %>" class="btn btn-primary" role="button">Create New List</a>
   <form method="POST" action="/subs">
   <%== csrf_tag %>
 <p> <input type="submit" value="Submit changes" /> </p>
@@ -28,6 +29,7 @@ updated within 10 minutes and an automated email sent to <%= configatron.notify.
   <%== csrf_tag %>
   <input type="submit" onclick="return window.confirm('Are you sure? Can take a bit to refresh since we need to requery every group.')" value="Invalidate the group cache" /> (useful if you want a new list to appear right now, but may take a few minutes to repopulate)
 </form>
+<a href="<%= configatron.info.add_new_group_url %>" class="btn btn-primary" role="button">Create New List</a>
 
 <% if @user.admin? %>
 <h2> (Admin only) Login As </h2>

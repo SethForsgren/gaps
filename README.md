@@ -80,6 +80,7 @@ First, you need to configure Gaps by creating a `.env` file and filling in your 
 
     ORG_DOMAIN=
     ORG_NAME=
+    ADD_NEW_GROUP_URL=
     OAUTH_CLIENT_ID=
     OAUTH_CLIENT_SECRET=
     OAUTH_REDIRECT_URL=
