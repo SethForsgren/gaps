@@ -74,16 +74,15 @@ EOF
     # Parse the description into freeform-text and a config hash
     def parse_description
       desc = self.description
-      text, tag = contains_display_config(desc)
-
       begin
+        text, tag = contains_display_config(desc)
         config = JSON.parse(tag)
         unless config.kind_of?(Hash)
           log.error("Ignoring non-hash JSON tag", text: text, tag: tag, group_email: group_email)
           text = desc
           config = {}
         end
-      rescue JSON::ParserError
+      rescue StandardError
         text = desc
         config = {}
       end
