@@ -74,7 +74,7 @@ EOF
     # Parse the description into freeform-text and a config hash
     def parse_description
       desc = self.description
-      text, tag = split_last_line(desc)
+      text, tag = contains_display_config(desc)
 
       begin
         config = JSON.parse(tag)
@@ -94,6 +94,10 @@ EOF
     def split_last_line(str)
       lines = str.split("\n")
       [lines[0...-1].join("\n"), lines[-1] || '']
+    end
+
+    def contains_display_config(str)
+      not str.match(/\{"display":".*"\}/im).nil?
     end
 
     # Regenerate the description, using the group's parsed config hash
