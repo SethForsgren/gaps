@@ -75,7 +75,8 @@ EOF
     def parse_description
       desc = self.description
       begin
-        text, tag = contains_display_config(desc)
+        text, tag = find_display_config(desc)
+        log.info("Description: ", desc: desc, text: text, tag: tag || '')
         config = JSON.parse(tag)
         unless config.kind_of?(Hash)
           log.error("Ignoring non-hash JSON tag", text: text, tag: tag, group_email: group_email)
@@ -95,8 +96,10 @@ EOF
       [lines[0...-1].join("\n"), lines[-1] || '']
     end
 
-    def contains_display_config(str)
-      not str.match(/\{"display":".*"\}/im).nil?
+    def find_display_config(str)
+      matches = str.match(/\{"display": ?".*"\}/im) if str
+      tag = matches[0] unless matches.nil?
+      [str, tag || '']
     end
 
     # Regenerate the description, using the group's parsed config hash
